@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ───────────────────── */
+:root {
+  --rose-500: #f9295e;
+  --rose-400: #ff5c85;
+  --rose-100: #ffe0e8;
+  --blush:    #fce7ef;
+  --cream:    #fffaf9;
+  --text-dark:#1a0a10;
+  --text-mid: #6b3a4a;
+  --text-soft:#b08090;
+}
+
+/* ── Base ────────────────────────────── */
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #fffaf9;
+  color: #1a0a10;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ───────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #fce7ef; }
+::-webkit-scrollbar-thumb { background: #ff94ae; border-radius: 99px; }
+
+/* ── Transitions de página ───────────── */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ── Componentes reutilizáveis ───────── */
+@layer components {
+
+  /* Cards */
+  .flora-card {
+    @apply bg-white rounded-2xl p-6 shadow-rose transition-shadow duration-200;
+  }
+  .flora-card:hover {
+    @apply shadow-rose-md;
+  }
+
+  /* Card title */
+  .flora-card-title {
+    font-family: 'Playfair Display', serif;
+    @apply text-[17px] text-[#1a0a10] mb-4;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm text-white
+           bg-gradient-to-r from-rose-500 to-rose-400 shadow-rose
+           transition-all duration-200 hover:-translate-y-0.5 hover:shadow-rose-md active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm
+           text-rose-600 bg-blush transition-all duration-200 hover:bg-rose-100;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-sm
+           text-[#6b3a4a] border border-rose-200 transition-all duration-200
+           hover:border-rose-400 hover:text-rose-500;
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  /* Input */
+  .flora-input {
+    @apply w-full px-4 py-3 rounded-xl border border-rose-100 bg-cream
+           font-body text-sm text-[#1a0a10] outline-none
+           transition-colors duration-150 focus:border-rose-400 focus:bg-white
+           placeholder:text-[#b08090];
+  }
+  .flora-label {
+    @apply block text-[11px] font-semibold uppercase tracking-wider text-[#6b3a4a] mb-1.5;
+  }
+
+  /* Pills */
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .pill-rose  { @apply bg-rose-100 text-rose-600; }
+  .pill-green { @apply bg-emerald-50 text-emerald-700; }
+  .pill-amber { @apply bg-amber-50 text-amber-700; }
+
+  /* Progress bar */
+  .progress-bg {
+    @apply w-full h-2.5 bg-rose-100 rounded-full overflow-hidden;
+  }
+  .progress-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-rose-400 to-rose-500
+           transition-all duration-500;
+  }
+  .progress-fill.over {
+    @apply from-rose-600 to-rose-700;
+  }
+
+  /* Empty state */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-10 text-[#b08090];
+  }
+}
